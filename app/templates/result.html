@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Results</title>
+    <link href="https://fonts.googleapis.com/css2?family=Quicksand:wght@400;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/styles.css') }}">
+</head>
+<body>
+    <div class="container">
+        <h1>Your Score: {{ score }}/100</h1>
+        <p>You guessed the weather in {{ city }} on {{ date|date_wordy }}.</p>
+
+        {% if holiday %}
+            <p><strong>Fun Fact:</strong> BTW...did you know {{ date|holiday_wordy }} is {{ holiday }}?</p>
+        {% endif %}
+
+        <div class="result">
+            <h3>🌡️ Your Answers:</h3>
+            <ul>
+                <li>High Temp: {{ user.high }}</li>
+                <li>Low Temp: {{ user.low }}</li>
+                <li>Rain: {{ user.rain }}</li>
+                <li>Sunrise: {{ user.sunrise }}</li>
+                <li>Sunset: {{ user.sunset }}</li>
+            </ul>
+
+            <h3>🌤️ Actual Weather:</h3>
+            <ul>
+                <li>High Temp: {{ actual.high }}</li>
+                <li>Low Temp: {{ actual.low }}</li>
+                <li>Rain: {{ actual.rain }}</li>
+                <li>Sunrise: {{ actual.sunrise }}</li>
+                <li>Sunset: {{ actual.sunset }}</li>
+            </ul>
+        </div>
+
+        <div class="result">
+            <h3>Share Your Score</h3>
+            <p id="share-text">I scored {{ score }}/100 guessing the weather in {{ city }} on {{ date|date_wordy }} — play at: https://weather-or-not.example</p>
+            <button onclick="copyShare()">📋 Copy to Clipboard</button>
+        </div>
+
+        <form action="/" style="margin-top: 1.5rem; text-align: center;">
+            <button type="submit">🔁 Play Again</button>
+        </form>
+    </div>
+
+    <script>
+    function copyShare() {
+        const text = document.getElementById("share-text").innerText;
+        navigator.clipboard.writeText(text).then(function() {
+            alert("Copied to clipboard!");
+        }, function(err) {
+            alert("Oops! Could not copy.");
+        });
+    }
+    </script>
+</body>
+</html>

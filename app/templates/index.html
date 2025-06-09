@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Weather or Not</title>
+    <link href="https://fonts.googleapis.com/css2?family=Quicksand:wght@400;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/styles.css') }}">
+</head>
+<body>
+    <div class="container" style="box-shadow: 0 2px 10px rgba(0,0,0,0.08); border-radius: 12px;">
+        <h1>Weather or Not ☁️</h1>
+        <p>Enter a city to guess the weather on a random day in history!</p>
+        <p style="color: #0277bd; font-weight: bold;">Tip: For best results, use large cities (like New York, London, Tokyo)</p>
+        <form id="city-form" action="/start" method="post">
+            <input type="text" id="city-input" name="city" placeholder="Enter a city" required style="width: 100%; max-width: 350px; margin-bottom: 0.5em;">
+            <button type="submit">Start Game</button>
+            <button type="button" id="random-city-btn" style="margin-left: 0.5em; background: #81d4fa; color: #01579b; position: relative;">
+                <span title="Try a famous city!">🎲 Generate Random City</span>
+            </button>
+        </form>
+        <script>
+        const cities = [
+            "New York City", "Los Angeles", "Chicago", "Houston", "Miami", "Seattle", "Toronto", "Vancouver", "Montreal", "London", "Manchester", "Paris", "Marseille", "Berlin", "Munich", "Rome", "Milan", "Madrid", "Barcelona", "Tokyo", "Osaka", "Sydney", "Melbourne", "Seoul", "São Paulo", "Rio de Janeiro", "Mexico City", "Cape Town", "Johannesburg", "Singapore", "New Delhi"
+        ];
+        document.getElementById('random-city-btn').addEventListener('click', function() {
+            const randomCity = cities[Math.floor(Math.random() * cities.length)];
+            document.getElementById('city-input').value = randomCity;
+        });
+        // Responsive: stack form fields on small screens
+        function handleResize() {
+            const form = document.getElementById('city-form');
+            if (window.innerWidth < 500) {
+                form.style.flexDirection = 'column';
+                form.style.alignItems = 'stretch';
+            } else {
+                form.style.flexDirection = 'row';
+                form.style.alignItems = 'center';
+            }
+        }
+        document.getElementById('city-form').style.display = 'flex';
+        document.getElementById('city-form').style.gap = '0.5em';
+        window.addEventListener('resize', handleResize);
+        handleResize();
+        </script>
+    </div>
+    <hr>
+    <section style="margin-top: 2rem; max-width: 600px; margin-left: auto; margin-right: auto;">
+        <h2>🔎 How This Game Works</h2>
+        <p><strong>Where does the data come from?</strong></p>
+        <ul>
+            <li>We use <strong>Open-Meteo</strong> for global historical weather data.</li>
+            <li>We convert your city input into coordinates using <strong>OpenStreetMap’s Nominatim API</strong>.</li>
+            <li>The weather data comes from public reanalysis datasets (like ERA5), which combine satellite and station data.</li>
+        </ul>
+        <p><strong>How far back does the data go?</strong></p>
+        <ul>
+            <li>We only select dates from <strong>1980 onward</strong>, when global coverage becomes reliable.</li>
+            <li>Older dates (pre-1980) are more likely to be missing or incomplete, so they are excluded.</li>
+        </ul>
+        <p><strong>Where does the data work best?</strong></p>
+        <ul>
+            <li>✅ Best results: <strong>U.S., Canada, Europe, Japan, Australia</strong></li>
+            <li>⚠️ Patchy results: <strong>South America, Africa, South Asia</strong> before the 1990s</li>
+        </ul>
+        <p><strong>Tips for better gameplay:</strong></p>
+        <ul>
+            <li>Use large or well-known cities (e.g. "New York", "London", "Tokyo")</li>
+            <li>Expect the game to choose a random date between <strong>1980 and today</strong></li>
+            <li>If data isn’t found, we’ll eventually retry with a new date in future updates</li>
+        </ul>
+        <p style="font-size: 0.9em; color: gray;">
+            This game is powered by public datasets and open APIs. Data quality varies by location and time.
+        </p>
+    </section>
+</body>
+</html>

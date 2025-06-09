@@ -1,0 +1,33 @@
+# Python
+venv/
+__pycache__/
+*.pyc
+*.pyo
+*.pyd
+*.log
+
+# Environment variables
+.env
+
+# macOS
+.DS_Store
+
+# VS Code
+.vscode/
+
+# Pytest and coverage
+.coverage
+htmlcov/
+*.cover
+*.py,cover
+
+# Compiled HTML or temp data
+*.bak
+*.swp
+
+# Deployment artifacts
+*.tar.gz
+*.egg-info/
+.eggs/
+dist/
+build/

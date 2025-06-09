@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Guess the Weather</title>
+    <link href="https://fonts.googleapis.com/css2?family=Quicksand:wght@400;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/styles.css') }}">
+</head>
+<body>
+    <div class="container">
+        <h1>Guess the Weather in {{ city }} on {{ date|date_wordy }}</h1>
+        <form action="/submit" method="post">
+            <label>High Temp (°F):</label>
+            <input type="number" name="high" required>
+            <label>Low Temp (°F):</label>
+            <input type="number" name="low" required>
+            <label>Did it rain? (yes/no):</label>
+            <select name="rain" required>
+                <option value="">--Select--</option>
+                <option value="yes">Yes</option>
+                <option value="no">No</option>
+            </select>
+            <label>Sunrise time:</label>
+            <input type="time" name="sunrise" required>
+            <label>Sunset time:</label>
+            <input type="time" name="sunset" required>
+            <button type="submit">Submit</button>
+        </form>
+    </div>
+</body>
+</html>
