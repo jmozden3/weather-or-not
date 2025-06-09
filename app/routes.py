@@ -16,6 +16,13 @@ def get_random_date(start_year=1979):
 
 @app.route("/")
 def index():
+    city = request.args.get("city")
+    date = request.args.get("date")
+    if city and date:
+        # Pre-fill session for challenge mode
+        session["city"] = city
+        session["date"] = date
+        return redirect(url_for("game"))
     return render_template("index.html")
 
 @app.route("/start", methods=["POST"])
