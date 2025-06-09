@@ -17,7 +17,7 @@ A quirky solo or group game where you guess the weather from a **random historic
 3. Guess the:
    - High temperature
    - Low temperature
-   - Whether it rained
+   - Whether there was precipitation (rain /showers /snow)
    - Sunrise time
    - Sunset time
 4. See your score out of 100 and compare to the actual data
