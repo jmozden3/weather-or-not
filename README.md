@@ -6,7 +6,11 @@ A quirky solo or group game where you guess the weather from a **random historic
 
 ## 🚀 Live App
 
-👉 [Play now on Azure](weather-or-not-c0crfdghawf7ebah.eastus2-01.azurewebsites.net)
+<!--
+👉 [Play now on Azure](https://weather-or-not-c0crfdghawf7ebah.eastus2-01.azurewebsites.net)
+-->
+
+> **Note:** The live Azure link above may not always be available or public. If you see a 404 or error, try running the app locally using the instructions below.
 
 ---
 
