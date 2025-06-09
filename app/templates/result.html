@@ -37,7 +37,7 @@
 
         <div class="result">
             <h3>Share Your Score</h3>
-            <p id="share-text">I scored {{ score }}/100 guessing the weather in {{ city }} on {{ date|date_wordy }} — play at: https://weather-or-not.example</p>
+            <p id="share-text">I scored {{ score }}/100 guessing the weather in {{ city }} on {{ date|date_wordy }} — play at: weather-or-not-c0crfdghawf7ebah.eastus2-01.azurewebsites.net</p>
             <button onclick="copyShare()">📋 Copy to Clipboard</button>
             <button onclick="copyChallenge()" style="margin-left: 0.5em;">🎯 Share This Challenge</button>
         </div>
@@ -58,7 +58,7 @@
     }
     function copyChallenge() {
         const challengeUrl = `${window.location.origin}/?city=${encodeURIComponent("{{ city }}")}&date={{ date }}`;
-        const text = `Try to beat my score guessing the weather in {{ city }} on {{ date|date_wordy }}! Play this exact challenge: ${challengeUrl}`;
+        const text = `Try and beat my {{ score }} guessing the weather in {{ city }} on {{ date|date_wordy }}! Play me: ${challengeUrl}`;
         navigator.clipboard.writeText(text).then(function() {
             alert("Challenge link copied! Share it with a friend.");
         }, function(err) {
